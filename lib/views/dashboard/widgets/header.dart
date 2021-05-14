@@ -17,7 +17,7 @@ class Header extends StatelessWidget {
           "Dashboard",
           style: Theme.of(context).textTheme.headline6,
         ),
-        const Spacer(),
+        const Spacer(flex: 2,),
         Expanded(
           child: SearchField()
         ),
@@ -48,14 +48,14 @@ class ProfileCard extends StatelessWidget {
       child: Row(
         children: [
           Image.asset(
-            "assets/images/profile_pic.png",
+            "assets/images/dashatar.png",
             height: 38,
           ),
           if (!Responsive.isMobile(context))
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Angelina Joli"),
+              child: Text("Roberto Mdz"),
             ),
           Icon(Icons.keyboard_arrow_down),
         ],
