@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_dashboard_panel/views/dashboard/widgets/recent_files.dart';
 
 import '../../constants.dart';
 import 'widgets/header.dart';
+import 'widgets/my_files.dart';
 import 'widgets/storage_details.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -21,10 +23,13 @@ class DashboardPage extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 5,
-                  child: Container(
-                    color: Colors.white,
-                    height: 500,
-                  )
+                  child: Column(
+                    children: [
+                      MyFiles(),
+                      SizedBox(height: defaultPadding),
+                      RecentFiles(),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: defaultPadding),
                 Expanded(
@@ -40,4 +45,5 @@ class DashboardPage extends StatelessWidget {
     );
   }
 }
+
 
