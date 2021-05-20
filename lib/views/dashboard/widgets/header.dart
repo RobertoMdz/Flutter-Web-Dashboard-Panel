@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_web_dashboard_panel/controllers/menu_controller.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
 import '../../../responsive.dart';
@@ -13,11 +15,18 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          "Dashboard",
-          style: Theme.of(context).textTheme.headline6,
+        if(!Responsive.isDesktop(context))
+        IconButton(
+          icon: Icon(Icons.menu), 
+          onPressed: context.read<MenuController>().controlMenu
         ),
-        const Spacer(flex: 2,),
+        if(!Responsive.isMobile(context))
+          Text(
+            "Dashboard",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+        if(!Responsive.isMobile(context))
+          Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
         Expanded(
           child: SearchField()
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_dashboard_panel/responsive.dart';
 import 'package:flutter_web_dashboard_panel/views/dashboard/widgets/recent_files.dart';
 
 import '../../constants.dart';
@@ -28,15 +29,20 @@ class DashboardPage extends StatelessWidget {
                       MyFiles(),
                       SizedBox(height: defaultPadding),
                       RecentFiles(),
+                      if(Responsive.isMobile(context))
+                        const SizedBox(height: defaultPadding),
+                      if(Responsive.isMobile(context))
+                        StarageDetails(),
                     ],
                   ),
                 ),
-                const SizedBox(width: defaultPadding),
-                Expanded(
-                  flex: 2,
-                  child: StarageDetails(),
-                ),
-
+                if(!Responsive.isMobile(context))
+                  const SizedBox(width: defaultPadding),
+                if(!Responsive.isMobile(context))
+                  Expanded(
+                    flex: 2,
+                    child: StarageDetails(),
+                  ),
               ]
             )
           ]

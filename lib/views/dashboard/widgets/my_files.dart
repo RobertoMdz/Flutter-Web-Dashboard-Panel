@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
 import '../../../models/my_files_model.dart';
+import '../../../responsive.dart';
 import 'file_info_card.dart';
 class MyFiles extends StatelessWidget {
   const MyFiles({
@@ -10,6 +11,7 @@ class MyFiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
     return Column(
       children: [
         Row(
@@ -20,8 +22,7 @@ class MyFiles extends StatelessWidget {
               style: TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(
                   horizontal: defaultPadding * 1.5,
-                  vertical:
-                      defaultPadding,
+                  vertical: defaultPadding / (Responsive.isMobile(context) ? 2 : 1) 
                 ),
               ),
               onPressed: () {},
@@ -31,7 +32,14 @@ class MyFiles extends StatelessWidget {
           ]
         ),
         SizedBox(height: defaultPadding),
-        FileInfoCardGridView()
+        Responsive(
+          mobile: FileInfoCardGridView(
+            crossAxisCount: _size.width < 650 ? 2 : 4,
+            childAspectRatio: _size.width < 650 ? 1.3 : 1,
+          ),
+          tablet: FileInfoCardGridView(),
+          desktop: FileInfoCardGridView(childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,)
+        )
       ]
     );
   }
